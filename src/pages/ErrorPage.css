@@ -1,0 +1,9 @@
+.main-error {
+  font-size: 2rem;
+  color: var(--black);
+  min-height: 70vh;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  background-color: var(--white);
+}

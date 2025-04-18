@@ -1,0 +1,127 @@
+.desktop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+.desktop .categories-h3 {
+  z-index: 11;
+  font-size: 2.5vw;
+  font-weight: 100;
+  color: var(--white);
+  margin-left: -2%;
+  margin-top: -2.4%;
+  font-family: 'Playfair Display', serif;
+}
+
+.desktop .categories-a {
+  overflow: hidden;
+  z-index: 9;
+}
+
+.desktop .categories-div {
+  z-index: 8;
+  position: relative;
+  background-color: var(--black);
+  width: 100%;
+  height: 100%;
+  transition: all var(--trans-low);
+}
+
+.desktop .categories-p {
+  border: 2px solid var(--white);
+  padding: 5px 35px;
+  font-size: 1.5vw;
+  color: var(--white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity var(--trans-low);
+}
+
+.desktop .categories-img {
+  z-index: 7;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--trans-low);
+}
+
+.desktop .categories-a:where(:hover, :focus) .categories-div {
+  outline: 2px solid white;
+  outline-offset: -25px;
+}
+
+.desktop .categories-a:where(:hover, :focus) .categories-img {
+  opacity: 0.2;
+}
+
+.desktop .categories-a:where(:hover, :focus) .categories-p {
+  opacity: 1;
+}
+
+@media only screen and (max-device-width: 50em) {
+  .categories-section {
+    background-attachment: scroll;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .mobile .categories-h3 {
+    z-index: 11;
+    font-size: 2rem;
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .mobile .categories-a {
+    overflow: hidden;
+    z-index: 9;
+  }
+
+  .mobile .categories-div {
+    z-index: 8;
+    position: relative;
+    background-color: var(--black);
+    width: calc(100vw - 50px);
+    height: 300px;
+    transition: all var(--trans-low);
+  }
+
+  .mobile .categories-p {
+    border: 2px solid var(--white);
+    padding: 5px 35px;
+    font-size: 2.5vw;
+    color: var(--white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity var(--trans-low);
+    opacity: 1;
+  }
+
+  .mobile .categories-img {
+    z-index: 7;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--trans-low);
+    opacity: 0.4;
+  }
+
+  .mobile .categories-a:where(:hover, :focus) .categories-div {
+    outline: 2px solid white;
+    outline-offset: -25px;
+  }
+}

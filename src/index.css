@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+:root {
+  --white: #f7f7f7;
+  --black: #111111;
+  --grey: #584e48;
+  --red: #c94d4d;
+  --trans-norm: 0.2s;
+  --trans-low: 0.4s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+img {
+  border-radius: 3px;
+}
