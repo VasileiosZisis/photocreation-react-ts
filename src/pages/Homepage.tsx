@@ -1,4 +1,4 @@
-import './HomePage.css'
+import './Homepage.css'
 import CategoryContainer from '../components/CategoryContainer'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
