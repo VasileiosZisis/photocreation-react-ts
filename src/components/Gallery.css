@@ -1,0 +1,79 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.image-gallery {
+  padding: 20px;
+}
+
+.custom-gallery {
+  max-height: 90vh;
+}
+
+.custom-gallery .image-gallery-image {
+  max-height: 70vh;
+  object-fit: contain;
+  width: 100%;
+  max-width: 100%;
+}
+
+.custom-gallery .image-gallery-navigation {
+  display: block !important;
+}
+
+.custom-gallery .image-gallery-svg {
+  color: white;
+  width: 40px;
+  height: 40px;
+}
+
+.custom-gallery .image-gallery-left-nav,
+.custom-gallery .image-gallery-right-nav {
+  z-index: 1100;
+  padding: 20px;
+}
+
+.custom-gallery .image-gallery-left-nav:hover,
+.custom-gallery .image-gallery-right-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.fullscreen-gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.gallery-container {
+  width: 90%;
+  max-width: 1200px;
+}
+
+@media only screen and (max-device-width: 50em) {
+  .image-gallery {
+    margin-top: 1rem;
+  }
+}

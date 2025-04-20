@@ -1,11 +1,11 @@
-import { useState, useEffect, Suspense } from 'react'
+import { useState, Suspense, JSX } from 'react'
 import './Gallery.css'
 import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
-// import Lightbox from 'react-awesome-lightbox'
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import './style.css'
 
 function Loading () {
   return (
@@ -15,18 +15,38 @@ function Loading () {
   )
 }
 
-function MasonryImageList ({ itemData }) {
-  const matches = useMediaQuery('(min-width:600px)')
-  const [showModal, setShowModal] = useState(false)
-  const handleClick = () => {
-    setShowModal(!showModal)
-  }
-  const [index, setIndex] = useState(0)
+interface Item {
+  url: string
+  alt: string
+  title: string
+}
 
-  useEffect(() => {
-    const body = document.querySelector('body')
-    body.style.overflow = showModal ? 'hidden' : 'auto'
-  }, [showModal])
+interface MasonryImageListProps {
+  itemData: Item[]
+}
+
+function MasonryImageList ({ itemData }: MasonryImageListProps): JSX.Element {
+  const matches: boolean = useMediaQuery('(min-width:600px)')
+  const [showFullScreen, setShowFullScreen] = useState<boolean>(false)
+  const [startIndex, setStartIndex] = useState<number>(0)
+
+  const galleryImages = itemData.map(item => ({
+    original: item.url,
+    thumbnail: `${item.url}?w=100&fit=crop&auto=format`,
+    originalAlt: item.alt,
+    thumbnailAlt: item.alt,
+    description: item.title
+  }))
+
+  const handleImageClick = (index: number) => {
+    setStartIndex(index)
+    setShowFullScreen(true)
+  }
+
+  const handleCloseFullScreen = () => {
+    setShowFullScreen(false)
+  }
+
   return (
     <section className='image-gallery'>
       <Box
@@ -43,30 +63,42 @@ function MasonryImageList ({ itemData }) {
       >
         <Suspense fallback={<Loading />}>
           <ImageList variant='masonry' cols={matches ? 3 : 2} gap={10}>
-            {itemData.map(item => (
-              <ImageListItem key={item.url} onClick={handleClick}>
+            {itemData.map((item, index) => (
+              <ImageListItem
+                key={item.url}
+                onClick={() => handleImageClick(index)}
+              >
                 <img
-                  onClick={() => setIndex(itemData.indexOf(item))}
                   srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
                   src={`${item.url}?w=248&fit=crop&auto=format`}
                   alt={item.alt}
                   loading='lazy'
                 />
-                <span className='overlay'></span>
               </ImageListItem>
             ))}
           </ImageList>
         </Suspense>
       </Box>
-      {/* {showModal && (
-        <Lightbox
-          images={itemData}
-          onClose={handleClick}
-          startIndex={index}
-          allowRotate={false}
-          doubleClickZoom={0}
-        />
-      )} */}
+      {showFullScreen && (
+        <div className='fullscreen-gallery'>
+          <button className='close-button' onClick={handleCloseFullScreen}>
+            ✕
+          </button>
+          <div className='gallery-container'>
+            <ImageGallery
+              items={galleryImages}
+              startIndex={startIndex}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              showNav={true}
+              showThumbnails={false}
+              thumbnailPosition='bottom'
+              onSlide={() => {}}
+              additionalClass='custom-gallery'
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
