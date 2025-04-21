@@ -4,7 +4,7 @@ Visit the website [here](https://www.studiophotocreationbyd.com/)
 
 ### A portfolio website for a wedding photographer.
 
-A simple portfolio website made with react.
+A simple portfolio website made with React and Vite in Typescript.
 
 ![Intro](/src/assets/Artboard.png)
 
